@@ -18,7 +18,7 @@ acc = T.mean(T.eq(pred, y_sym))
 
 params = lasagne.layers.get_all_params(l_out)
 grad = T.grad(loss, params)
-updates = lasagne.updates.adadelta(grad, params, learning_rate=0.001)
+updates = lasagne.updates.sgd(grad, params, learning_rate=0.05)
 
 f_train = theano.function([X_sym, y_sym], [loss, acc], updates=updates)
 f_val = theano.function([X_sym, y_sym], [loss, acc])
